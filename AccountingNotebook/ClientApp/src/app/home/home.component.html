@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="col">
+
+    <div class="row mb-2">
+
+      <h4>Transactions</h4>
+      <button class="btn btn-primary mx-2" (click)="getTransactions()">
+        Get Transactions
+      </button>
+    </div>
+  </div>
+  <div id="accordion">
+    <div class="card" *ngFor="let transaction of transactions; index as i">
+      <div class="card-header collapsable-header"
+        [ngClass]="{'bg-success': transaction.type === 'Credit', 'bg-danger': transaction.type === 'Debit'}"
+        id="heading{{i}}" data-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="false"
+        [attr.aria-controls]="'#collapse' + i">
+        <h5 class="mb-0">
+          Type: {{transaction.type}} - Amount: {{transaction.amount}}
+        </h5>
+      </div>
+
+      <div id="collapse{{i}}" class="collapse" [attr.aria-labelledby]="'#heading' + i" data-parent="#accordion">
+        <div class="card-body bg-light">
+          <div class="col">
+            <div class="row">
+              Id: {{transaction.id}}
+            </div>
+            <div class="row">
+              Type: {{transaction.type}}
+            </div>
+            <div class="row">
+              Amount: {{transaction.amount}}
+            </div>
+            <div class="row">
+              EffectiveDate: {{transaction.effectiveDate}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
